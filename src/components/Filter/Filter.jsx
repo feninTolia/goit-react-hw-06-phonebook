@@ -1,7 +1,11 @@
 import { Formik, Form } from 'formik';
 import { Input, FilterLabel } from './Filter.styled';
+import { useDispatch } from 'react-redux';
+import { addFilteredContact } from '../../redux/contactsSlice';
 
-const Filter = ({ onContactsFilter }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{ filter: '' }}
@@ -18,7 +22,7 @@ const Filter = ({ onContactsFilter }) => {
               id="filter"
               type="text"
               onChange={e => {
-                onContactsFilter(e.target.value);
+                dispatch(addFilteredContact(e.target.value));
                 handleChange(e);
               }}
             />
